@@ -24,4 +24,5 @@ class ImageScheduler:
         self.schedule_new_picture()
 
     def run(self):
+        self.take_picture_upload_and_reschedule()
         self.scheduler.run()
