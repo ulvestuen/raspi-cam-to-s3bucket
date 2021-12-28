@@ -15,8 +15,7 @@ class ImageScheduler:
     def schedule_new_picture(self):
         self.scheduler.enter(float(getenv("S3_UPLOAD_INTERVAL")),
                              1,
-                             self.take_picture_upload_and_reschedule,
-                             self)
+                             self.take_picture_upload_and_reschedule)
 
     def take_picture_upload_and_reschedule(self):
         self.camera.take_picture()
