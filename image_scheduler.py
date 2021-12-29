@@ -19,8 +19,13 @@ class ImageScheduler:
 
     def take_picture_upload_and_reschedule(self):
         self.camera.take_picture()
+        print("Image captured")
+
         self.s3_uploader.upload_files()
+        print("Image uploaded to S3")
+
         self.schedule_new_picture()
+        print("New image capture scheduled")
 
     def run(self):
         self.take_picture_upload_and_reschedule()

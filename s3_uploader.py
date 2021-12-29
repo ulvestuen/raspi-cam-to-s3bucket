@@ -5,13 +5,14 @@ import boto3
 
 
 class S3Uploader:
-    def __init__(self):
+    def __init__(self,  upload_folder):
         self.s3 = boto3.resource('s3')
         self.bucket = self.s3.Bucket(getenv('S3_BUCKET_NAME'))
+        self.upload_folder = upload_folder
 
     def upload_files(self):
-        for filename in listdir('files'):
-            with open('files/' + filename, 'rb') as data:
+        for filename in listdir(self.upload_folder):
+            with open(self.upload_folder + filename, 'rb') as data:
                 key = filename
                 self.bucket.put_object(
                     Key=key,
